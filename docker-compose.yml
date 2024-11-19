@@ -1,0 +1,37 @@
+version: "3.8"
+
+services:
+    backend:
+        build:
+            context: ./backend
+            dockerfile: Dockerfile
+        ports:
+            - "3000:3000" # Expose backend API on port 3000
+        depends_on:
+            - mongo
+            - mqtt
+        env_file:
+            - .env # Load environment variables from .env
+        environment:
+            NODE_ENV: production # Example of adding additional environment variables
+
+    mongo:
+        image: mongo:6.0
+        container_name: mongo
+        ports:
+            - "27017:27017" # Expose MongoDB port
+        volumes:
+            - mongo-data:/data/db # Persistent storage for MongoDB
+
+    mqtt:
+        image: eclipse-mosquitto:2.0
+        container_name: mosquitto
+        ports:
+            - "1883:1883" # MQTT broker exposed port
+        volumes:
+            - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
+            - ./mosquitto/data:/mosquitto/data # MQTT persistent storage
+            - ./mosquitto/log:/mosquitto/log # MQTT logs
+
+volumes:
+    mongo-data:

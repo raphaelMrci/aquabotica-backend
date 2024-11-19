@@ -1,7 +1,10 @@
+// server.js
+require("dotenv").config(); // Load environment variables from .env
+
 const app = require("./app");
 const connectDB = require("./config/db");
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000; // Use PORT from .env if available
 connectDB();
 
 app.listen(PORT, () => {

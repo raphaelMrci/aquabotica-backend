@@ -1,3 +1,4 @@
+// app.js
 const express = require("express");
 const authRoutes = require("./routes/authRoutes");
 const deviceRoutes = require("./routes/deviceRoutes");
