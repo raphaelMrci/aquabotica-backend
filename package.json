@@ -1,0 +1,16 @@
+{
+    "name": "nodejs-jwt-auth",
+    "version": "1.0.0",
+    "description": "Node.js JWT Authentication",
+    "main": "src/server.js",
+    "scripts": {
+        "start": "node src/server.js"
+    },
+    "dependencies": {
+        "bcrypt": "^5.1.1",
+        "body-parser": "^1.20.3",
+        "express": "^4.21.1",
+        "jsonwebtoken": "^9.0.2",
+        "mongoose": "^8.8.2"
+    }
+}
