@@ -1,11 +1,8 @@
 const express = require("express");
-const {
-    registerDevice,
-    associateDevice,
-} = require("../controllers/deviceController");
+const { associateDevice } = require("../controllers/deviceController");
+const { authenticateToken } = require("../middlewares/authMiddleware");
 const router = express.Router();
 
-router.post("/register-device", registerDevice);
-router.post("/associate-device", associateDevice);
+router.post("/associate", authenticateToken, associateDevice);
 
 module.exports = router;
