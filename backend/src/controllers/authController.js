@@ -40,3 +40,13 @@ exports.login = async (req, res) => {
     res.status(500).json({ message: "Error logging in" });
   }
 };
+
+exports.logout = async (req, res) => {
+  res.json({ message: "Logout successful" });
+};
+
+exports.refreshToken = async (req, res) => {
+  const { userId, username } = req.user;
+  const token = jwt.sign({ userId, username }, JWT_SECRET, { expiresIn: "1h" });
+  res.json({ message: "Token refreshed", token });
+};
